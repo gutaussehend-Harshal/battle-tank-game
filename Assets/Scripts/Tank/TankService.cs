@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// using Tanks.Tank;
 public class TankService : MonoBehaviour
 {
     public TankView tankView;
     public GameObject wrongTankView;
     // public GameObject tankView;
+
+    // public TankScriptableObject tankConfigurations;
+    public TankScriptableObjectList tankList;
     private void Start()
     {
         StartGame();
@@ -14,15 +17,20 @@ public class TankService : MonoBehaviour
 
     public void StartGame()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
-            CreateNewTank();
+            CreateNewTank(i);
         }
     }
 
-    private TankController CreateNewTank()
+    private TankController CreateNewTank(int index)
     {
-        TankModel model = new TankModel(5, 100f);
+        // TankScriptableObject tankScriptableObject = tankConfigurations[2];
+        TankScriptableObject tankScriptableObject = tankList.tanks[index];
+        Debug.Log("Creating tank with type " + tankScriptableObject.TankName);
+
+        TankModel model = new TankModel(tankScriptableObject);
+        // TankModel model = new TankModel(TankType.None, 5, 100f);
         TankController tank = new TankController(model, tankView);
         return tank;
     }
