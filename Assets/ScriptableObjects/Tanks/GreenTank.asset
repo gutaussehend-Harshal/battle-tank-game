@@ -16,3 +16,6 @@ MonoBehaviour:
   TankName: Green Default Tank
   Speed: 75
   Health: 75
+  BulletType: 0
+  TankView: {fileID: 7229069242293534463, guid: 523dad2a54c64f446903774d90694011,
+    type: 3}

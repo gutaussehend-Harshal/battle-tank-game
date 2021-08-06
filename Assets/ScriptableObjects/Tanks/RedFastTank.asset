@@ -16,3 +16,6 @@ MonoBehaviour:
   TankName: Red FlashTank
   Speed: 300
   Health: 25
+  BulletType: 0
+  TankView: {fileID: 3922738596933486958, guid: 6197efb2c6487a445a92c0a65f962d0c,
+    type: 3}

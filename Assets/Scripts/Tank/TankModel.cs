@@ -2,25 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TankModel
+namespace Outscal.BattleTank3DProject
 {
-    private TankScriptableObject tankScriptableObject;
-    public TankModel(TankScriptableObject tankScriptableObject)
+    public class TankModel
     {
-        this.tankScriptableObject = tankScriptableObject;
-        TankType = tankScriptableObject.TankType;
-        Speed = (int)tankScriptableObject.Speed;
-        Health = tankScriptableObject.Health;
-    }
-    public TankModel(TankType tankType, int speed, float health)
-    {
-        TankType = tankType;
-        Speed = speed;
-        Health = health;
-    }
+        private TankScriptableObject tankScriptableObject;
+        private TankController tankController;
 
-    public int Speed { get; private set; }
-    public float Health { get; private set; }
-    public TankType TankType { get; private set; }
-    public int SpeedLive { get { return (int)tankScriptableObject.Speed; }}
+        public TankModel(TankScriptableObject tankScriptableObject)
+        {
+            this.tankScriptableObject = tankScriptableObject;
+            TankType = tankScriptableObject.TankType;
+            Speed = (int)tankScriptableObject.Speed;
+            Health = tankScriptableObject.Health;
+        }
+        public TankModel(TankType tankType, int speed, float health)
+        {
+            TankType = tankType;
+            Speed = speed;
+            Health = health;
+        }
+
+        public void SetTankController(TankController _tankController)
+        {
+            tankController = _tankController;
+        }
+
+        public int Speed { get; private set; }
+        public float Health { get; private set; }
+        public TankType TankType { get; private set; }
+        public int SpeedLive { get { return (int)tankScriptableObject.Speed; } }
+    }
 }

@@ -2,36 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 // using Tanks.Tank;
-public class TankService : MonoBehaviour
+namespace Outscal.BattleTank3DProject
 {
-    public TankView tankView;
-    public GameObject wrongTankView;
-    // public GameObject tankView;
-
-    // public TankScriptableObject tankConfigurations;
-    public TankScriptableObjectList tankList;
-    private void Start()
+    public class TankService : MonoSingletonGeneric<TankService>
     {
-        StartGame();
-    }
+        // public TankView tankView;
+        // public GameObject wrongTankView;
+        // public GameObject tankView;
 
-    public void StartGame()
-    {
-        for (int i = 0; i < 5; i++)
+        // public TankScriptableObject tankConfigurations;
+        public TankScriptableObjectList tankList;
+        private void Start()
         {
-            CreateNewTank(i);
+            StartGame();
         }
-    }
 
-    private TankController CreateNewTank(int index)
-    {
-        // TankScriptableObject tankScriptableObject = tankConfigurations[2];
-        TankScriptableObject tankScriptableObject = tankList.tanks[index];
-        Debug.Log("Creating tank with type " + tankScriptableObject.TankName);
+        public void StartGame()
+        {
+            // for (int i = 0; i < 3; i++)
+            // {
+                CreateNewTank();
+            // }
+        }
 
-        TankModel model = new TankModel(tankScriptableObject);
-        // TankModel model = new TankModel(TankType.None, 5, 100f);
-        TankController tank = new TankController(model, tankView);
-        return tank;
+        private TankController CreateNewTank()
+        {
+            int randomNo = Random.Range(0, tankList.tanks.Length);
+            // TankScriptableObject tankScriptableObject = tankConfigurations[2];
+            TankScriptableObject tankScriptableObject = tankList.tanks[randomNo];
+            Debug.Log("Creating tank with type " + tankScriptableObject.TankName);
+            TankView tankView = tankScriptableObject.TankView;
+            TankModel model = new TankModel(tankScriptableObject);
+            // TankModel model = new TankModel(TankType.None, 5, 100f);
+            TankController tank = new TankController(model, tankView);
+            return tank;
+        }
     }
 }

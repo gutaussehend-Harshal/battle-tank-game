@@ -16,3 +16,6 @@ MonoBehaviour:
   TankName: Blue Awesome Tank
   Speed: 100
   Health: 100
+  BulletType: 0
+  TankView: {fileID: 7661226217081064903, guid: 08f70a6f737faea4fa70363c234aac9f,
+    type: 3}

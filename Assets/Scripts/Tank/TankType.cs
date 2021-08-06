@@ -1,8 +1,11 @@
 ﻿using System;
-public enum TankType
+namespace Outscal.BattleTank3DProject
 {
-    None,
-    Red, 
-    Green,
-    Blue,
-}   
+    public enum TankType
+    {
+        None,
+        Red,
+        Green,
+        Blue,
+    }
+}

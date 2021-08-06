@@ -2,20 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TankController
+namespace Outscal.BattleTank3DProject
 {
-    public TankController(TankModel tankModel, TankView tankPrefab)
-    // public TankController(TankModel tankModel, GameObject tankPrefab)
+    public class TankController
     {
-        TankModel = tankModel;
+        public TankView TankView { get; private set; }
+        public TankModel TankModel { get; private set; }
+        private Rigidbody rigidBody;
+        public TankController(TankModel tankModel, TankView tankPrefab)
+        // public TankController(TankModel tankModel, GameObject tankPrefab)
+        {
+            TankModel = tankModel;
+            // GameObject go = GameObject.Instantiate(tankPrefab);
+            // TankView = go.GetComponent<TankView>();
+            TankView = GameObject.Instantiate<TankView>(tankPrefab);
+            rigidBody = TankView.GetComponent<Rigidbody>();
+            TankView.SetTankController(this);
+            TankModel.SetTankController(this);
 
-        // GameObject go = GameObject.Instantiate(tankPrefab);
-        // TankView = go.GetComponent<TankView>();
+            Debug.Log("tank view created", TankView);
+        }
 
-        TankView = GameObject.Instantiate<TankView>(tankPrefab);
-        Debug.Log("tank view created", TankView);
     }
-
-    public TankModel TankModel { get; private set; }
-    public TankView TankView { get; private set; }
 }
